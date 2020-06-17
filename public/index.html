@@ -1,0 +1,46 @@
+<html>
+  <body>
+      <p>Getting started with Firebase Yay</p>
+      <h1 id="bigOne"></h1>
+		<!-- The core Firebase JS SDK is always required and must be listed first -->
+		<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+		<!-- TODO: Add SDKs for Firebase products that you want to use
+		     https://firebase.google.com/docs/web/setup#available-libraries -->
+		<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-database.js"></script>
+		<script src=".\js\javascript_methods.js"></script>
+
+		<script>
+		  // Your web app's Firebase configuration
+		  var firebaseConfig = {
+		    apiKey: "AIzaSyA4a4BMm3AP1ynNma1ORdoR23C9m7U2s7M",
+		    authDomain: "garden-calendar-27b4c.firebaseapp.com",
+		    databaseURL: "https://garden-calendar-27b4c.firebaseio.com",
+		    projectId: "garden-calendar-27b4c",
+		    storageBucket: "garden-calendar-27b4c.appspot.com",
+		    messagingSenderId: "457600831861",
+		    appId: "1:457600831861:web:c89317be682c23f638033c",
+		    measurementId: "G-HQME7D9Z1B"
+		  };
+		  	// Initialize Firebase
+		  	firebase.initializeApp(firebaseConfig);
+		  	firebase.analytics();
+
+		    // getting the text value from the database
+	    	var bigOne = document.getElementById('bigOne');
+			var ref = firebase.database().ref();
+
+			ref.on("value", function(snapshot) {
+			   console.log(snapshot.val());
+			   bigOne.innerText = JSON.stringify(snapshot.val(), null, 2);
+			}, function (error) {
+			   console.log("Error: " + error.code);
+			});    
+		</script>
+		<form>
+      	<input type="button" value="Result" onclick="display()"/>
+      	</form>
+
+  </body>
+</html>
